@@ -13,6 +13,11 @@ body{
   background: #f7f1e3 !important;
 }
 
+.image-box{
+  display: flex;
+  justify-content: center;
+}
+
 .side-bar{
   width: 430px;
 }
@@ -125,20 +130,19 @@ section .details span{
 .side-button{
   text-align: center;
 }
- 
 .c-btn {
   padding: .15em .5em;
-  border: solid 1px red;
+  border: solid 1px black;
   border-radius: 4px;
   margin-bottom: 17px;
-  margin-left: 5px;
   display: inline-block;
   text-align: center;
   text-decoration: none;
+  color: black;
 }
 .c-btn:hover,
 .c-btn:focus {
   cursor: pointer;
-  background-color: red;
+  background-color: black;
   color: #fff;
 }
