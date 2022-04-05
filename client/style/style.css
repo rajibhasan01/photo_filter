@@ -99,4 +99,7 @@ form p{
   .wrapper{
     width: 100%;
   }
+  .wrapper form{
+    width: 100%;
+  }
 }
