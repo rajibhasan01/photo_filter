@@ -1,7 +1,8 @@
 const form = document.querySelector("form"),
 fileInput = document.querySelector(".file-input"),
 progressArea = document.querySelector(".progress-area"),
-uploadedArea = document.querySelector(".uploaded-area");
+uploadedArea = document.querySelector(".uploaded-area"),
+image = document.getElementById('image');
 
 form.addEventListener("click", () =>{
   fileInput.click();
@@ -18,13 +19,15 @@ const uploadFile = (file) =>{
     const formData = new FormData()
     formData.append('image', file)
 
-    fetch(`http://localhost:5000/img/blur`, {
+    fetch(`http://localhost:5000/img/upload`, {
         method: 'POST',
         body: formData
       })
       .then(response => response.json())
       .then(data => {
-        console.log(data)
+        image.src=`http://localhost:5000/${data.imgPath}`;
+        form.classList.add("display_hidden");
+        console.log(data);
       })
       .catch(error => {
         console.error(error)
