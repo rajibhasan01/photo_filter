@@ -34,10 +34,10 @@
                             <i class="fas fa-cloud-upload-alt"></i>
                             <p>Browse File to Upload</p>
                         </form>
+
                         <!-- image view -->
-                        
-                            <img class="img-fluid" src="" id="image" alt="">
-                        
+                        <img class="img-fluid" src="" id="image" alt="">
+
                     </div>
                 </div>
 
@@ -49,6 +49,12 @@
                             <a class="c-btn">Crop</a>
                             <a class="c-btn">Rotation</a>
                             <a class="c-btn">Resize</a>
+
+                            <!-- input value range -->
+                            <div>
+                                <input id="range" oninput="myFunction(this.value)" type="range" id="vol" name="vol" min="-25" max="25">
+                                <label id="range_value" for="vol"> 0</label>
+                            </div>
                         </div>
                         <h5>Brightness & Color</h5>
                         <div class="side-bar">

@@ -2,8 +2,13 @@ const form = document.querySelector("form"),
 fileInput = document.querySelector(".file-input"),
 progressArea = document.querySelector(".progress-area"),
 uploadedArea = document.querySelector(".uploaded-area"),
-image = document.getElementById('image');
+image = document.getElementById('image'),
+range = document.getElementById('range'),
+inside = document.getElementById('inside'),
+outside = document.getElementById('outside');
 
+
+// file upload
 form.addEventListener("click", () =>{
   fileInput.click();
 });
@@ -32,4 +37,10 @@ const uploadFile = (file) =>{
       .catch(error => {
         console.error(error)
       })  
+}
+
+
+// range calculate
+function myFunction(val) {
+  document.getElementById("range_value").innerHTML = val;
 }
