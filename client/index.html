@@ -52,7 +52,7 @@
 
                             <!-- input value range -->
                             <div>
-                                <input id="range" oninput="myFunction(this.value)" type="range" id="vol" name="vol" min="-25" max="25">
+                                <input id="range" oninput="myFunction(this.value)" value="0" type="range" id="vol" name="vol" min="0" max="100">
                                 <label id="range_value" for="vol"> 0</label>
                             </div>
                         </div>
@@ -70,10 +70,16 @@
                             <a class="c-btn">Remove BG</a>
                             <a class="c-btn">Add BG</a>
                         </div>
+
+                        <h5>Filter</h5>
+                        <div class="side-bar">
+                            <a id="gray" class="c-btn">Gray</a>
+                            <a class="c-btn">Vivid</a>
+                            <a class="c-btn">Glory</a>
+                            <a class="c-btn">Sunsine</a>
+                        </div>
                     </div>
                 </div>
-
-
             </div>
 
         </section>
