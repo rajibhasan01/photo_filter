@@ -74,9 +74,27 @@
                         <h5>Filter</h5>
                         <div class="side-bar">
                             <a id="gray" class="c-btn">Gray</a>
-                            <a class="c-btn">Vivid</a>
+                            <a id="tint" class="c-btn">Tint</a>
                             <a class="c-btn">Glory</a>
                             <a class="c-btn">Sunsine</a>
+
+                            <!-- input value range -->
+                            <div class="display_hidden input-range-box" id="input-div">
+                                <div>
+                                    <input id="red_color" oninput="redValue(this.value)" value="0" type="range" id="vol" name="vol" min="0" max="255">
+                                    <label id="red" for="vol">0</label>
+                                </div>
+                                <!-- input value range -->
+                                <div>
+                                    <input id="blue_color" oninput="blueValue(this.value)" value="0" type="range" id="vol" name="vol" min="0" max="255">
+                                    <label id="blue" for="vol">0</label>
+                                </div>
+                                <!-- input value range -->
+                                <div>
+                                    <input id="green_color" oninput="greenValue(this.value)" value="0" type="range" id="vol" name="vol" min="0" max="255">
+                                    <label id="green" for="vol">0</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
