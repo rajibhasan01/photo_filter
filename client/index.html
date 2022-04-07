@@ -72,7 +72,7 @@
                             <a id="gray" class="c-btn">Gray</a>
                             <a id="tint" class="c-btn">Tint</a>
                             <a id="sharpen" class="c-btn">Sharpen</a>
-                            <a class="c-btn">Sunsine</a>
+                            <a id="custom" class="c-btn">Custom</a>
 
                             <!-- input value range -->
                             <div class="display_hidden input-range-box" id="input-div">
@@ -91,6 +91,55 @@
                                         <label id="green" for="vol">0</label>
                                     </div>
                             </div>
+
+                            <!-- Custom Filter Value -->
+                             <!-- input value range -->
+                             <div class="display_hidden row" id="custom-input-range">
+                                <div class="col">
+                                    <input id="a1_value" oninput="a1Value(this.value)" value="50" type="range" id="vol" name="vol" min="0" max="100">
+                                    <label id="a1" for="vol">0.5</label>
+                                </div>
+                                <!-- input value range -->
+                                <div class="col">
+                                    <input id="a2_value" oninput="a2Value(this.value)" value="50" type="range" id="vol" name="vol" min="0" max="100">
+                                    <label id="a2" for="vol">0.5</label>
+                                </div>
+                                <!-- input value range -->
+                                <div class="col">
+                                    <input id="a3_value" oninput="a3Value(this.value)" value="34" type="range" id="vol" name="vol" min="0" max="100">
+                                    <label id="a3" for="vol">0.34</label>
+                                </div>
+                                <!-- input value range -->
+                                <div class="col">
+                                    <input id="b1_value" oninput="b1Value(this.value)" value="33" type="range" id="vol" name="vol" min="0" max="100">
+                                    <label id="b1" for="vol">0.33</label>
+                                </div>
+                                <!-- input value range -->
+                                <div class="col">
+                                    <input id="b2_value" oninput="b2Value(this.value)" value="45" type="range" id="vol" name="vol" min="0" max="100">
+                                    <label id="b2" for="vol">0.45</label>
+                                </div>
+                                <!-- input value range -->
+                                <div class="col">
+                                    <input id="b3_value" oninput="b3Value(this.value)" value="25" type="range" id="vol" name="vol" min="0" max="100">
+                                    <label id="b3" for="vol">0.25</label>
+                                </div>
+                                 <!-- input value range -->
+                                 <div class="col">
+                                    <input id="c1_value" oninput="c1Value(this.value)" value="59" type="range" id="vol" name="vol" min="0" max="100">
+                                    <label id="c1" for="vol">0.59</label>
+                                </div>
+                                <!-- input value range -->
+                                <div class="col">
+                                    <input id="c2_value" oninput="c2Value(this.value)" value="65" type="range" id="vol" name="vol" min="0" max="100">
+                                    <label id="c2" for="vol">0.65</label>
+                                </div>
+                                <!-- input value range -->
+                                <div class="col">
+                                    <input id="c3_value" oninput="c3Value(this.value)" value="39" type="range" id="vol" name="vol" min="0" max="100">
+                                    <label id="c3" for="vol">0.39</label>
+                                </div>
+                        </div>
                         </div>
                     </div>
                 </div>
