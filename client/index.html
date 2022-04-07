@@ -46,29 +46,29 @@
                         <h4>Photo Filter</h4>
                         <h5>Size</h5>
                         <div class="side-bar">
-                            <a class="c-btn">Crop</a>
-                            <a class="c-btn">Rotation</a>
-                            <a class="c-btn">Resize</a>
+                            <a id="border" class="c-btn">Border</a>
+                            <a class="c-btn disable">Rotation</a>
+                            <a class="c-btn disable">Resize</a>
 
                             <!-- input value range -->
-                            <div>
-                                <input id="range" oninput="myFunction(this.value)" value="0" type="range" id="vol" name="vol" min="0" max="100">
-                                <label id="range_value" for="vol"> 0</label>
+                            <div class="display_hidden" id="border_range_div">
+                                <input id="range" oninput="myFunction(this.value)" value="15" type="range" id="vol" name="vol" min="0" max="100">
+                                <label id="range_value" for="vol"> 15</label>
                             </div>
                         </div>
                         <h5>Brightness & Color</h5>
                         <div class="side-bar">
-                            <a class="c-btn">Brightness</a>
-                            <a class="c-btn">Contrast</a>
-                            <a class="c-btn">Saturation</a>
-                            <a class="c-btn">Sharpness</a>
+                            <a class="c-btn disable">Brightness</a>
+                            <a class="c-btn disable">Contrast</a>
+                            <a class="c-btn disable">Saturation</a>
+                            <a class="c-btn disable">Sharpness</a>
                         </div>
                         <h5>Advanced</h5>
                         <div class="side-bar">
-                            <a class="c-btn">Vignette</a>
-                            <a class="c-btn">Blur BG</a>
-                            <a class="c-btn">Remove BG</a>
-                            <a class="c-btn">Add BG</a>
+                            <a class="c-btn disable">Vignette</a>
+                            <a class="c-btn disable">Blur BG</a>
+                            <a class="c-btn disable">Remove BG</a>
+                            <a class="c-btn disable">Add BG</a>
                         </div>
 
                         <h5>Filter</h5>
@@ -81,8 +81,8 @@
                             <!-- input value range -->
                             <div class="display_hidden input-range-box" id="input-div">
                                 <div>
-                                    <input id="red_color" oninput="redValue(this.value)" value="0" type="range" id="vol" name="vol" min="0" max="255">
-                                    <label id="red" for="vol">0</label>
+                                    <input id="red_color" oninput="redValue(this.value)" value="255" type="range" id="vol" name="vol" min="0" max="255">
+                                    <label id="red" for="vol">255</label>
                                 </div>
                                 <!-- input value range -->
                                 <div>

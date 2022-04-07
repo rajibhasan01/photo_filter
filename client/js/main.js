@@ -8,7 +8,9 @@ inside = document.getElementById('inside'),
 outside = document.getElementById('outside'),
 input_div = document.getElementById("input-div"),
 tint_div = document.getElementById('tint'),
-gray_div = document.getElementById('gray');
+gray_div = document.getElementById('gray')
+border_button = document.getElementById('border'),
+border_range_div = document.getElementById('border_range_div');
 
 let value = 0;
 let imgPath = null;
@@ -77,6 +79,21 @@ function greenValue(val) {
   
 }
 
+
+border_button.addEventListener('click', ()=>{
+  border_range_div.classList.remove('display_hidden');
+  border_button.classList.add('active');
+  input_div.classList.add('display_hidden');
+  tint_div.classList.remove('active');
+  gray_div.classList.remove('active')
+  let top = 15, bottom = 15, left = 15, right= 15, inside = 0,
+  color = [255,0,0,1];
+
+  const border = {top, bottom, left, right, color, inside, imgPath};
+  border_api(border);
+})
+
+
 document.getElementById('range').addEventListener("change", () => {
   value = parseInt(value);
   let inside = 0;
@@ -89,24 +106,33 @@ document.getElementById('range').addEventListener("change", () => {
   color = [255,0,0,1];
 
   const border = {top, bottom, left, right, color, inside, imgPath};
-
-  fetch(`http://localhost:5000/img/border`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(border)
-      })
-      .then(response => response.json())
-      .then(data => {
-        imgPath = data.imgPath;
-        image.src=`http://localhost:5000/${imgPath}?t=` + new Date().getTime();
-        console.log(imgPath)
-      })
-      .catch(error => {
-        console.error(error)
-      }) 
+  border_api(border);
+  
 });
+
+
+
+// border fetch
+const border_api = (border)=>{
+  if(imgPath){
+    fetch(`http://localhost:5000/img/border`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(border)
+    })
+    .then(response => response.json())
+    .then(data => {
+      imgPath = data.imgPath;
+      image.src=`http://localhost:5000/${imgPath}?t=` + new Date().getTime();
+      console.log(imgPath)
+    })
+    .catch(error => {
+      console.error(error)
+    }) 
+  }
+}
 
 
 document.getElementById('gray').addEventListener('click', ()=>{
@@ -114,7 +140,10 @@ document.getElementById('gray').addEventListener('click', ()=>{
   input_div.classList.add('display_hidden');
   tint_div.classList.remove('active');
   gray_div.classList.add('active');
-  fetch(`http://localhost:5000/img/gray`, {
+  border_button.classList.remove('active');
+  border_range_div.classList.add('display_hidden');
+  if(imgPath){
+    fetch(`http://localhost:5000/img/gray`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -130,12 +159,14 @@ document.getElementById('gray').addEventListener('click', ()=>{
       .catch(error => {
         console.error(error)
       }) 
+  }
 })
 
 
 // Tint api call
 const tintFilterApi = (tint_data) =>{
-  fetch(`http://localhost:5000/img/tint`, {
+  if (tint_data.imgPath){
+    fetch(`http://localhost:5000/img/tint`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -151,6 +182,7 @@ const tintFilterApi = (tint_data) =>{
       .catch(error => {
         console.error(error)
       }) 
+  }
 }
 
 document.getElementById('tint').addEventListener('click', ()=>{
@@ -159,6 +191,8 @@ document.getElementById('tint').addEventListener('click', ()=>{
   input_div.classList.remove("display_hidden");
   tint_div.classList.add('active');
   gray_div.classList.remove('active');
+  border_button.classList.remove('active');
+  border_range_div.classList.add('display_hidden');
   tintFilterApi(tint_data);
 })
 

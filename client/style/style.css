@@ -98,6 +98,16 @@ form p{
   color: #fff;
 }
 
+.disable{
+  background-color: rgb(175, 175, 175);
+  color: black;
+}
+
+.disable:hover, 
+.disable:focus{
+  background-color: rgb(175, 175, 175);
+  color: black;
+}
 
 /* Media Quary */
 @media (max-width: 991px) {
