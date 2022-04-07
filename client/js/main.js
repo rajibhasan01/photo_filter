@@ -10,7 +10,12 @@ input_div = document.getElementById("input-div"),
 tint_div = document.getElementById('tint'),
 gray_div = document.getElementById('gray')
 border_button = document.getElementById('border'),
-border_range_div = document.getElementById('border_range_div');
+border_range_div = document.getElementById('border_range_div'),
+image_container_div = document.getElementById('image-container'),
+img_1 = document.getElementById('img_1'),
+img_2 = document.getElementById('img_2'),
+img_3 = document.getElementById('img_3'),
+img_4 = document.getElementById('img_4');
 
 let value = 0;
 let imgPath = null;
@@ -41,7 +46,12 @@ const uploadFile = (file) =>{
       .then(data => {
         imgPath = data.imgPath;
         image.src=`http://localhost:5000/${imgPath}`;
+        img_1.src=`http://localhost:5000/${imgPath}`;
+        img_2.src=`http://localhost:5000/${imgPath}`;
+        img_3.src=`http://localhost:5000/${imgPath}`;
+        img_4.src=`http://localhost:5000/${imgPath}`;
         form.classList.add("display_hidden");
+        image_container_div.classList.remove('display_hidden');
         console.log(data);
       })
       .catch(error => {
