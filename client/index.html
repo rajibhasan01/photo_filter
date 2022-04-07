@@ -37,7 +37,9 @@
 
                         <!-- image view -->
                         <img class="img-fluid" src="" id="image" alt="">
-
+                    </div>
+                    <div class="border mt-3 rounded display_hidden" id="btn_box">
+                        <button class="btn text-center">Reload</button>
                     </div>
                 </div>
 
@@ -74,20 +76,20 @@
 
                             <!-- input value range -->
                             <div class="display_hidden input-range-box" id="input-div">
-                                <div>
-                                    <input id="red_color" oninput="redValue(this.value)" value="255" type="range" id="vol" name="vol" min="0" max="255">
-                                    <label id="red" for="vol">255</label>
-                                </div>
-                                <!-- input value range -->
-                                <div>
-                                    <input id="blue_color" oninput="blueValue(this.value)" value="0" type="range" id="vol" name="vol" min="0" max="255">
-                                    <label id="blue" for="vol">0</label>
-                                </div>
-                                <!-- input value range -->
-                                <div>
-                                    <input id="green_color" oninput="greenValue(this.value)" value="0" type="range" id="vol" name="vol" min="0" max="255">
-                                    <label id="green" for="vol">0</label>
-                                </div>
+                                    <div>
+                                        <input id="red_color" oninput="redValue(this.value)" value="255" type="range" id="vol" name="vol" min="0" max="255">
+                                        <label id="red" for="vol">255</label>
+                                    </div>
+                                    <!-- input value range -->
+                                    <div>
+                                        <input id="blue_color" oninput="blueValue(this.value)" value="0" type="range" id="vol" name="vol" min="0" max="255">
+                                        <label id="blue" for="vol">0</label>
+                                    </div>
+                                    <!-- input value range -->
+                                    <div>
+                                        <input id="green_color" oninput="greenValue(this.value)" value="0" type="range" id="vol" name="vol" min="0" max="255">
+                                        <label id="green" for="vol">0</label>
+                                    </div>
                             </div>
                         </div>
                     </div>
@@ -95,17 +97,17 @@
             </div>
 
             <!-- image filter -->
-            <div class="row display_hidden" id="image-container">
-                <div class="col-3 border">
+            <div class="row g-4 mt-3 display_hidden" id="image-container">
+                <div class="col-6 col-lg-3 img-box">
                     <img id="img_1" class="img-fluid" src="" alt="">
                 </div>
-                <div class="col-3 border">
+                <div class="col-6 col-lg-3 img-box">
                     <img id="img_2" class="img-fluid" src="" alt="">
                 </div>
-                <div class="col-3 border">
+                <div class="col-6 col-lg-3 img-box">
                     <img id="img_3" class="img-fluid" src="" alt="">
                 </div>
-                <div class="col-3 border">
+                <div class="col-6 col-lg-3 img-box">
                     <img id="img_4" class="img-fluid" src="" alt="">
                 </div>
             </div>

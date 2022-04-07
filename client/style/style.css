@@ -15,7 +15,8 @@ body{
 
 .image-box{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: end;
 }
 
 .side-bar{
@@ -73,6 +74,10 @@ form p{
 
 .img-fluid{
   max-height: 100% !important;
+}
+
+.img-box{
+  max-height: 300px;
 }
 
 
