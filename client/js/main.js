@@ -9,13 +9,14 @@ const form = document.querySelector("form"),
   input_div = document.getElementById("input-div"),
   tint_div = document.getElementById("tint"),
   gray_div = document.getElementById("gray");
-(border_button = document.getElementById("border")),
-  (border_range_div = document.getElementById("border_range_div")),
-  (image_container_div = document.getElementById("image-container")),
-  (img_1 = document.getElementById("img_1")),
-  (img_2 = document.getElementById("img_2")),
-  (img_3 = document.getElementById("img_3")),
-  (img_4 = document.getElementById("img_4"));
+border_button = document.getElementById("border"),
+  border_range_div = document.getElementById("border_range_div"),
+  image_container_div = document.getElementById("image-container"),
+  img_1 = document.getElementById("img_1"),
+  img_2 = document.getElementById("img_2"),
+  img_3 = document.getElementById("img_3"),
+  img_4 = document.getElementById("img_4"),
+  sharpen = document.getElementById("sharpen");
 
 let value = 0;
 let imgPath = null;
@@ -98,6 +99,8 @@ border_button.addEventListener("click", () => {
   input_div.classList.add("display_hidden");
   tint_div.classList.remove("active");
   gray_div.classList.remove("active");
+  sharpen.classList.remove("active");
+
   let top = 15,
     bottom = 15,
     left = 15,
@@ -155,6 +158,7 @@ document.getElementById("gray").addEventListener("click", () => {
   input_div.classList.add("display_hidden");
   tint_div.classList.remove("active");
   gray_div.classList.add("active");
+  sharpen.classList.remove("active");
   border_button.classList.remove("active");
   border_range_div.classList.add("display_hidden");
   if (imgPath) {
@@ -207,6 +211,7 @@ document.getElementById("tint").addEventListener("click", () => {
   input_div.classList.remove("display_hidden");
   tint_div.classList.add("active");
   gray_div.classList.remove("active");
+  sharpen.classList.remove("active");
   border_button.classList.remove("active");
   border_range_div.classList.add("display_hidden");
   tintFilterApi(tint_data);
@@ -232,3 +237,46 @@ document.getElementById("red_color").addEventListener("change", () => {
   const tint_data = { imgPath, color };
   tintFilterApi(tint_data);
 });
+
+sharpen.addEventListener('click', ()=>{
+  sharpen.classList.add('active');
+  tint_div.classList.remove("active");
+  gray_div.classList.remove("active");
+  border_button.classList.remove("active");
+  border_range_div.classList.add("display_hidden");
+  const sharpen_data = {
+    imgPath,
+    sigma: 3,
+    sharpen_m1: 0,
+    sharpen_m2: 5,
+    sharpen_x1: 5,
+    sharpen_y2: 50,
+    sharpen_y3: 50,
+  }
+
+  sharpenApi(sharpen_data);
+
+})
+
+
+const sharpenApi = (sharpen_data) =>{
+  if (sharpen_data.imgPath) {
+    fetch(`http://localhost:5000/img/sharpen`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(sharpen_data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        imgPath = data.imgPath;
+        image.src =
+          `http://localhost:5000/${imgPath}?t=` + new Date().getTime();
+        console.log(imgPath);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+}
