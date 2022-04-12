@@ -18,7 +18,8 @@ const form = document.querySelector("form"),
   img_4 = document.getElementById("img_4"),
   sharpen = document.getElementById("sharpen"),
   custom_range = document.getElementById("custom-input-range"),
-  custom_btn = document.getElementById("custom");
+  custom_btn = document.getElementById("custom"),
+  remove_bg = document.getElementById("remove_bg");
 
 let value = 0;
 let imgPath = null;
@@ -165,6 +166,8 @@ border_button.addEventListener("click", () => {
   sharpen.classList.remove("active");
   custom_range.classList.add('display_hidden');
   custom_btn.classList.remove("active");
+  remove_bg.classList.remove("active");
+
 
   let top = 15,
     bottom = 15,
@@ -228,6 +231,8 @@ document.getElementById("gray").addEventListener("click", () => {
   border_range_div.classList.add("display_hidden");
   custom_range.classList.add('display_hidden');
   custom_btn.classList.remove("active");
+  remove_bg.classList.remove("active");
+
 
   if (imgPath) {
     fetch(`http://localhost:5000/img/gray`, {
@@ -284,6 +289,8 @@ document.getElementById("tint").addEventListener("click", () => {
   border_range_div.classList.add("display_hidden");
   custom_range.classList.add('display_hidden');
   custom_btn.classList.remove("active");
+  remove_bg.classList.remove("active");
+
 
   tintFilterApi(tint_data);
 });
@@ -318,6 +325,8 @@ sharpen.addEventListener('click', ()=>{
   custom_range.classList.add('display_hidden');
   input_div.classList.add("display_hidden");
   custom_btn.classList.remove("active");
+  remove_bg.classList.remove("active");
+
   const sharpen_data = {
     imgPath,
     sigma: 3,
@@ -364,6 +373,7 @@ custom_btn.addEventListener('click', ()=>{
   border_range_div.classList.add("display_hidden");
   input_div.classList.add("display_hidden");
   custom_btn.classList.add("active");
+  remove_bg.classList.remove("active");
 });
 
 
@@ -467,3 +477,45 @@ const customFilterApi = (custom_data) =>{
       });
   }
 }
+
+// Remove BG
+remove_bg.addEventListener("click", () => {
+  const remove_data = { imgPath };
+  input_div.classList.add("display_hidden");
+  tint_div.classList.remove("active");
+  gray_div.classList.remove("active");
+  sharpen.classList.remove("active");
+  border_button.classList.remove("active");
+  border_range_div.classList.add("display_hidden");
+  custom_range.classList.add('display_hidden');
+  custom_btn.classList.remove("active");
+  remove_bg.classList.add("active");
+
+  console.log("click to remove_bg")
+
+  removeBGApi(remove_data);
+});
+
+
+// Tint api call
+const removeBGApi = (remove_data) => {
+  if (remove_data.imgPath) {
+    fetch(`http://localhost:5000/img/remove_bg`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(remove_data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        imgPath = data.imgPath;
+        image.src =
+          `http://localhost:5000/${imgPath}?t=` + new Date().getTime();
+        console.log(imgPath);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+};
