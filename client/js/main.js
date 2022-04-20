@@ -21,7 +21,8 @@ const form = document.querySelector("form"),
   custom_btn = document.getElementById("custom"),
   remove_bg = document.getElementById("remove_bg"),
   stroke_bg = document.getElementById("border_stroke")
-  stroke_range_box = document.getElementById('stroke_range_box');
+  stroke_range_box = document.getElementById('stroke_range_box'),
+  sketch_btn = document.getElementById('sketch');
   
 
 let value = 0;
@@ -180,6 +181,8 @@ border_button.addEventListener("click", () => {
   remove_bg.classList.remove("active");
   stroke_bg.classList.remove("active");
   stroke_range_box.classList.add("display_hidden");
+  sketch_btn.classList.remove('active');
+
 
 
   let top = 15,
@@ -247,6 +250,8 @@ document.getElementById("gray").addEventListener("click", () => {
   remove_bg.classList.remove("active");
   stroke_bg.classList.remove("active");
   stroke_range_box.classList.add("display_hidden");
+  sketch_btn.classList.remove('active');
+
 
 
   if (imgPath) {
@@ -307,6 +312,8 @@ document.getElementById("tint").addEventListener("click", () => {
   remove_bg.classList.remove("active");
   stroke_bg.classList.remove("active");
   stroke_range_box.classList.add("display_hidden");
+  sketch_btn.classList.remove('active');
+
 
 
   tintFilterApi(tint_data);
@@ -345,6 +352,8 @@ sharpen.addEventListener('click', ()=>{
   remove_bg.classList.remove("active");
   stroke_bg.classList.remove("active");
   stroke_range_box.classList.add("display_hidden");
+  sketch_btn.classList.remove('active');
+
 
   const sharpen_data = {
     imgPath,
@@ -395,6 +404,8 @@ custom_btn.addEventListener('click', ()=>{
   remove_bg.classList.remove("active");
   stroke_bg.classList.remove("active");
   stroke_range_box.classList.add("display_hidden");
+  sketch_btn.classList.remove('active');
+
 });
 
 
@@ -513,6 +524,8 @@ remove_bg.addEventListener("click", () => {
   remove_bg.classList.add("active");
   stroke_bg.classList.remove("active");
   stroke_range_box.classList.add("display_hidden");
+  sketch_btn.classList.remove('active');
+
 
 
   console.log("click to remove_bg")
@@ -557,6 +570,7 @@ stroke_bg.addEventListener('click', ()=>{
   remove_bg.classList.remove("active");
   stroke_bg.classList.add("active");
   stroke_range_box.classList.remove("display_hidden");
+  sketch_btn.classList.remove('active');
 
 
   border_stroke(stroke_data);
@@ -591,3 +605,48 @@ document.getElementById("stroke_range_value").addEventListener("change", () => {
   const stroke_data = { imgPath, stroke: stroke_range };
   border_stroke(stroke_data);
 });
+
+
+
+sketch_btn.addEventListener('click', ()=>{
+  const sketch_data = { imgPath, sketch: 215, sigma: 215};
+  input_div.classList.add("display_hidden");
+  tint_div.classList.remove("active");
+  gray_div.classList.remove("active");
+  sharpen.classList.remove("active");
+  border_button.classList.remove("active");
+  border_range_div.classList.add("display_hidden");
+  custom_range.classList.add('display_hidden');
+  custom_btn.classList.remove("active");
+  remove_bg.classList.remove("active");
+  stroke_bg.classList.remove("active");
+  stroke_range_box.classList.remove("display_hidden");
+  sketch_btn.classList.add('active');
+
+
+  sketch_img(sketch_data);
+});
+
+
+// Bordar Stroke api call
+const sketch_img = (sketch_data) => {
+  if (sketch_data.imgPath) {
+    fetch(`http://localhost:5000/img/sketch`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(sketch_data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        imgPath = data.imgPath;
+        image.src =
+          `http://localhost:5000/${imgPath}?t=` + new Date().getTime();
+        console.log(imgPath);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+};

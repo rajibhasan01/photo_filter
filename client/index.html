@@ -75,12 +75,13 @@
 
                         <h5>Filter</h5>
                         <div class="side-bar">
+                            <a id="sketch" class="c-btn">Sketch</a>
                             <a id="gray" class="c-btn">Gray</a>
                             <a id="tint" class="c-btn">Tint</a>
                             <a id="sharpen" class="c-btn">Sharpen</a>
                             <a id="custom" class="c-btn">Custom</a>
 
-                            <!-- input value range -->
+                            <!-- Tint input value range -->
                             <div class="display_hidden input-range-box" id="input-div">
                                     <div>
                                         <input id="red_color" oninput="redValue(this.value)" value="255" type="range" id="vol" name="vol" min="0" max="255">
@@ -97,6 +98,19 @@
                                         <label id="green" for="vol">0</label>
                                     </div>
                             </div>
+
+                            <!--Sketch input value range -->
+                            <div class="display_hidden input-range-box" id="input-div">
+                                <div>
+                                    <input id="kernel_input" oninput="kernelValue(this.value)" value="85" type="range" id="vol" name="vol" min="0" max="255">
+                                    <label id="kernel" for="vol">85</label>
+                                </div>
+                                <!-- input value range -->
+                                <div>
+                                    <input id="sigma_input" oninput="sigmaValue(this.value)" value="0" type="range" id="vol" name="vol" min="0" max="255">
+                                    <label id="sigma" for="vol">85</label>
+                                </div>
+                        </div>
 
                             <!-- Custom Filter Value -->
                              <!-- input value range -->
