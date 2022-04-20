@@ -64,7 +64,13 @@
                             <a class="c-btn disable">Vignette</a>
                             <a class="c-btn disable">Blur BG</a>
                             <a id="remove_bg" class="c-btn">Remove BG</a>
-                            <a class="c-btn disable">Add BG</a>
+                            <a id="border_stroke" class="c-btn">Add Border</a>
+
+                            <!-- input value range -->
+                            <div class="display_hidden" id="stroke_range_box">
+                                <input id="stroke_range_value" oninput="strokeValue(this.value)" value="10" type="range" id="vol" name="vol" min="0" max="40">
+                                <label id="stroke_range" for="vol"> 10</label>
+                            </div>
                         </div>
 
                         <h5>Filter</h5>

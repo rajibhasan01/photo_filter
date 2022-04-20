@@ -19,7 +19,10 @@ const form = document.querySelector("form"),
   sharpen = document.getElementById("sharpen"),
   custom_range = document.getElementById("custom-input-range"),
   custom_btn = document.getElementById("custom"),
-  remove_bg = document.getElementById("remove_bg");
+  remove_bg = document.getElementById("remove_bg"),
+  stroke_bg = document.getElementById("border_stroke")
+  stroke_range_box = document.getElementById('stroke_range_box');
+  
 
 let value = 0;
 let imgPath = null;
@@ -29,6 +32,8 @@ let red_value = 0,
   a1 = 70, a2 = 67, a3 = 34,
   b1 = 33, b2 = 45, b3 = 25,
   c1 = 59, c2 = 65, c3 = 39;
+
+let stroke_range = 0;
 
 
 // file upload
@@ -156,6 +161,12 @@ function c3Value(val) {
 }
 
 
+// range calculate
+function strokeValue(val) {
+  stroke_range = val;
+  document.getElementById("stroke_range").innerHTML = val;
+}
+
 
 border_button.addEventListener("click", () => {
   border_range_div.classList.remove("display_hidden");
@@ -167,6 +178,8 @@ border_button.addEventListener("click", () => {
   custom_range.classList.add('display_hidden');
   custom_btn.classList.remove("active");
   remove_bg.classList.remove("active");
+  stroke_bg.classList.remove("active");
+  stroke_range_box.classList.add("display_hidden");
 
 
   let top = 15,
@@ -232,6 +245,8 @@ document.getElementById("gray").addEventListener("click", () => {
   custom_range.classList.add('display_hidden');
   custom_btn.classList.remove("active");
   remove_bg.classList.remove("active");
+  stroke_bg.classList.remove("active");
+  stroke_range_box.classList.add("display_hidden");
 
 
   if (imgPath) {
@@ -290,6 +305,8 @@ document.getElementById("tint").addEventListener("click", () => {
   custom_range.classList.add('display_hidden');
   custom_btn.classList.remove("active");
   remove_bg.classList.remove("active");
+  stroke_bg.classList.remove("active");
+  stroke_range_box.classList.add("display_hidden");
 
 
   tintFilterApi(tint_data);
@@ -326,6 +343,8 @@ sharpen.addEventListener('click', ()=>{
   input_div.classList.add("display_hidden");
   custom_btn.classList.remove("active");
   remove_bg.classList.remove("active");
+  stroke_bg.classList.remove("active");
+  stroke_range_box.classList.add("display_hidden");
 
   const sharpen_data = {
     imgPath,
@@ -374,6 +393,8 @@ custom_btn.addEventListener('click', ()=>{
   input_div.classList.add("display_hidden");
   custom_btn.classList.add("active");
   remove_bg.classList.remove("active");
+  stroke_bg.classList.remove("active");
+  stroke_range_box.classList.add("display_hidden");
 });
 
 
@@ -490,6 +511,9 @@ remove_bg.addEventListener("click", () => {
   custom_range.classList.add('display_hidden');
   custom_btn.classList.remove("active");
   remove_bg.classList.add("active");
+  stroke_bg.classList.remove("active");
+  stroke_range_box.classList.add("display_hidden");
+
 
   console.log("click to remove_bg")
 
@@ -519,3 +543,51 @@ const removeBGApi = (remove_data) => {
       });
   }
 };
+
+stroke_bg.addEventListener('click', ()=>{
+  const stroke_data = { imgPath, stroke: 10};
+  input_div.classList.add("display_hidden");
+  tint_div.classList.remove("active");
+  gray_div.classList.remove("active");
+  sharpen.classList.remove("active");
+  border_button.classList.remove("active");
+  border_range_div.classList.add("display_hidden");
+  custom_range.classList.add('display_hidden');
+  custom_btn.classList.remove("active");
+  remove_bg.classList.remove("active");
+  stroke_bg.classList.add("active");
+  stroke_range_box.classList.remove("display_hidden");
+
+
+  border_stroke(stroke_data);
+});
+
+
+// Bordar Stroke api call
+const border_stroke = (strokeData) => {
+  if (strokeData.imgPath) {
+    fetch(`http://localhost:5000/img/stroke`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(strokeData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        imgPath = data.imgPath;
+        image.src =
+          `http://localhost:5000/${imgPath}?t=` + new Date().getTime();
+        console.log(imgPath);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+};
+
+
+document.getElementById("stroke_range_value").addEventListener("change", () => {
+  const stroke_data = { imgPath, stroke: stroke_range };
+  border_stroke(stroke_data);
+});
